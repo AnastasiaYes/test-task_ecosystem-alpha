@@ -1,0 +1,154 @@
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(16px, 2vw + 10px, 18px);
+    color: #202020;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    background-color: #e2e2e2;
+}
+
+.header_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_logo {
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.logo_card {
+    color:#dc4c3e;
+}
+
+.isActive {
+    color: #dc4c3e;
+}
+
+.nav_list {
+    display: flex;
+    gap: 20px;
+    text-transform: uppercase;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.main_title {
+    margin: 24px 0;
+    text-align: center;
+}
+
+.main_card-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3vw;
+}
+
+.project_action-icons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.icon{
+    cursor: pointer;
+    font-size: 22px;
+    stroke: black;
+    stroke-width: 20;
+    transition: all 0.3s ease;
+}
+.icon:hover {
+    stroke: #dc4c3e;
+    transform: scale(1.1);
+}
+
+.icon-heart {
+    color: #ffffff;
+}
+
+.icon-heart.isActive{
+    color: #dc4c3e;
+}
+
+.icon-delete {
+    cursor: pointer;
+    color: #888888;
+}
+
+.project {
+    padding: 4px;
+    border: 1px solid #dc4c3e;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.project_img {
+    margin: 10px 0;
+}
+
+.project_description {
+    margin: 10px 0;
+}
+
+.project_title {
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    margin: 6px;
+}
+
+
+.footer {
+    flex-shrink: 0;
+    background-color: #e2e2e2;
+    text-align: center;
+}
+
+.footer .container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.copyright {
+    font-size: 12px;
+}
+
+
+
+@media (max-width: 992px) {
+    .main_card-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main_card-list {
+        grid-template-columns: 1fr;
+    }
+}
