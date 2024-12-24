@@ -1,12 +1,14 @@
 import {useState} from "react";
+import {store} from "../store/store.ts";
 
-function CreateProduct () {
+function CreateProduct() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
 
     const createCard = e => {
         e.preventDefault();
+        // store.dispatch({type: 'ADD_PRODUCT', 'product': {}})
         console.log(title)
     }
 

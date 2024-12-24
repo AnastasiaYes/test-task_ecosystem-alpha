@@ -1,20 +1,15 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {ProductType} from "../store/store.ts";
 
-export type Product = {
-
-};
-
-function Product () {
+function Product ({product}: {product: ProductType}) {
     return (
-        <li className='product__item'>
-            <span className='product__item-title'>Картинка</span>
+        <li className='product__item' key={product.id}>
+            <span className='product__item-title'>{product.title}</span>
             <img className='product__item-img'
-                 src="https://masterpiecer-images.s3.yandex.net/b2d91936767a11eeb11ee6d39d9a42a4:upscaled"
+                 src={product.link}
                  alt=""/>
-            <p className='product__item-description'>Текст (от лат. textus — ткань; сплетение, сочетание) — зафиксированная на
-                каком-либо материальном
-                носителе человеческая мысль; в общем плане связная и полная последовательность символов.</p>
+            <p className='product__item-description'>{product.description}</p>
             <div className='product__item_action-icons'>
                 <FontAwesomeIcon icon={faTrash} className='icon icon-delete'/>
                 <FontAwesomeIcon icon={faHeart} className='icon icon-heart'/>
