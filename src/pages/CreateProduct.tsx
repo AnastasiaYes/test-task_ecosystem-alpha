@@ -1,21 +1,34 @@
 import {useState} from "react";
-import {store} from "../store/store.ts";
+import {addProduct, ProductType, store} from "../store/store.ts";
+import {useDispatch, useSelector} from "react-redux";
 
 function CreateProduct() {
+    const dispatch = useDispatch();
+    // const formData = useSelector((state) => state.form);
+
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
 
-    const createCard = e => {
+    const handleSubmit = e => {
         e.preventDefault();
-        // store.dispatch({type: 'ADD_PRODUCT', 'product': {}})
-        console.log(title)
+        const newProduct:ProductType = {
+            id: Date.now(),
+            title,
+            description,
+            link
+        }
+        dispatch(addProduct(newProduct));
+
+        setTitle('');
+        setDescription('');
+        setLink('');
     }
 
     return (
         <main className='main container'>
             <h1 className='main_title'>Create Product</h1>
-            <form className='product-form' action='#' method='post' target='_blank'>
+            <form className='product-form' onSubmit={handleSubmit} action='#' method='post' target='_blank'>
                 <h2 className='product-form__title'>Form</h2>
                 <ul className='product-form__list'>
                     <li className='product-form__item'>
@@ -59,7 +72,7 @@ function CreateProduct() {
                         />
                     </li>
                 </ul>
-                <button className='product-form__submit' type='' onClick={e => createCard(e)}>Create</button>
+                <button className='product-form__submit' type='submit'>Create</button>
             </form>
         </main>
     );

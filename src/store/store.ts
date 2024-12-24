@@ -20,19 +20,32 @@ const reducer = (state: StateType = initialState, action: {
 } & (CreateProductType | RemoveProductType)) => {
     switch (action.type) {
         case 'ADD_PRODUCT': {
-            const action = action as { type: string } & CreateProductType;
+            const { product } = action as { type: string } & CreateProductType;
 
-            return {...state, products: [...state.products.push(action.product)]}
+            // return {...state, products: [...state.products.push(action.product)]}
+            return {
+                ...state,
+                products: [...state.products, product] 
+            };
         }
         case 'REMOVE_PRODUCT': {
-            const action = action as { type: string } & RemoveProductType;
+            const { id } = action as { type: string } & RemoveProductType;
 
-            return {...state, products: state.products.filter((p) => p.id !== action.id),};
+            // return {...state, products: state.products.filter((p) => p.id !== action.id),};
+            return {
+                ...state,
+                products: state.products.filter(p => p.id !== id)
+            };
         }
         default:
             return state
     }
 }
+
+export const addProduct = (product: ProductType) => ({
+    type: 'ADD_PRODUCT',
+    product,
+});
 
 const reducers = combineReducers({
     products: reducer,
