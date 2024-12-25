@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {addProduct, ProductType, store} from "../store/store.ts";
-import {useDispatch, useSelector} from "react-redux";
+import {addProduct, ProductType} from "../store/store.ts";
+import {useDispatch} from "react-redux";
+import {toast, ToastContainer} from "react-toastify";
 
 function CreateProduct() {
     const dispatch = useDispatch();
-    // const formData = useSelector((state) => state.form);
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -20,6 +20,8 @@ function CreateProduct() {
             liked: false
         }
         dispatch(addProduct(newProduct));
+
+        toast.success('Product created successfully!');
 
         setTitle('');
         setDescription('');
@@ -75,6 +77,7 @@ function CreateProduct() {
                 </ul>
                 <button className='product-form__submit' type='submit'>Create</button>
             </form>
+            <ToastContainer />
         </main>
     );
 }

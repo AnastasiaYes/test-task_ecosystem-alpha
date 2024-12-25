@@ -156,6 +156,34 @@ h1 {
     color: #888888;
 }
 
+/* toastStyles */
+
+.toast-body {
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 16px;
+}
+
+.toast-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.toast-btn {
+    background-color: #dc4c3e;
+    color: #f1f1f1;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toast-btn:hover {
+    background-color: #c34237;
+}
+
+
 /*product inform*/
 
 .product_img {
