@@ -16,7 +16,8 @@ function CreateProduct() {
             id: Date.now(),
             title,
             description,
-            link
+            link,
+            liked: false
         }
         dispatch(addProduct(newProduct));
 

@@ -1,11 +1,10 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {ProductType} from "../store/store.ts";
-import {useState} from "react";
+import {MouseEventHandler} from "react";
 
 
-function Product ({product}: {product: ProductType}) {
-    // const [like, setLike] = useState();
+function Product ({product, updLiked, deleteCard}: {product: ProductType, updLiked: MouseEventHandler | undefined, deleteCard: MouseEventHandler | undefined}) {
 
     return (
         <li className='product__item' key={product.id}>
@@ -17,8 +16,8 @@ function Product ({product}: {product: ProductType}) {
             </div>
             <p className='product__item-description'>{product.description}</p>
             <div className='product__item_action-icons'>
-                <FontAwesomeIcon icon={faTrash} className='icon icon-delete'/>
-                <FontAwesomeIcon icon={faHeart} className='icon icon-heart'/>
+                <FontAwesomeIcon icon={faTrash} onClick={deleteCard} className='icon icon-delete'/>
+                <FontAwesomeIcon icon={faHeart} onClick={updLiked} className={`icon icon-heart ${product.liked ? 'isActive' : ''}`}/>
             </div>
         </li>
     )
