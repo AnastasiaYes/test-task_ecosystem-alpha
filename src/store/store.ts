@@ -9,11 +9,11 @@ export type ProductType = {
     liked: boolean
 };
 
-type StateType = { products: ProductType[] };
-type CreateProductType = { product: ProductType };
-type EditLikeType = { id: number, liked: boolean };
-type RemoveProductType = { id: number };
-const initialState: StateType = {
+export type ProductsStateType = { products: ProductType[], filter: {liked: boolean|null, search: string|null} };
+export type CreateProductType = { product: ProductType };
+export type EditLikeType = { id: number, liked: boolean };
+export type RemoveProductType = { id: number };
+const initialState: ProductsStateType = {
     products: [
         {
             id: 1,
@@ -22,23 +22,24 @@ const initialState: StateType = {
             link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
             liked: false,
         }
-    ]
+    ],
+    filter: {liked: null},
 };
 
-const reducer = (state: StateType = initialState, action: {
+const reducer = (state: ProductsStateType = initialState, action: {
     type: string
 } & (CreateProductType | RemoveProductType | EditLikeType)) => {
     switch (action.type) {
         case 'ADD_PRODUCT': {
-            const { product } = action as { type: string } & CreateProductType;
+            const {product} = action as { type: string } & CreateProductType;
 
             return {
                 ...state,
-                products: [...state.products, product] 
+                products: [...state.products, product]
             };
         }
         case 'REMOVE_PRODUCT': {
-            const { id } = action as { type: string } & RemoveProductType;
+            const {id} = action as { type: string } & RemoveProductType;
 
             return {
                 ...state,
@@ -47,7 +48,7 @@ const reducer = (state: StateType = initialState, action: {
         }
 
         case 'EDIT_LIKE': {
-            const { liked, id } = action as { type: string } & EditLikeType;
+            const {liked, id} = action as { type: string } & EditLikeType;
             const index = state.products.findIndex((p) => p.id === id);
             if (index === -1) {
                 return state;
@@ -57,7 +58,15 @@ const reducer = (state: StateType = initialState, action: {
                 ...state,
                 products: state.products.map((p) => p.id !== id ? p : {...p, liked}),
             }
-
+        }
+        case 'UPDATE_FILTER': {
+            //todo {liked: boolean|null, search: string|null}
+            return {
+                ...state,
+                /*filter: {
+                    ...action.filter
+                }*/
+            };
         }
         default:
             return state

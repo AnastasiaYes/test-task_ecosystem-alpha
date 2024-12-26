@@ -45,7 +45,7 @@ input, button, textarea {
     outline: none;
 }
 
-button {
+button, a {
     cursor: pointer;
 }
 
@@ -53,6 +53,17 @@ form {
     display: block;
     margin: 0;
     padding: 0;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
 }
 
 

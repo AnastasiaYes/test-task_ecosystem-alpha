@@ -2,9 +2,11 @@ import Product from "../components/Product.tsx";
 import {editLike, ProductType, removeProduct, store} from "../store/store.ts";
 import {useSelector} from "react-redux";
 import {toast, ToastContainer} from "react-toastify";
+import Filter from "../components/Filter.tsx";
 
 
 function ProductsMain () {
+    //todo отфильтровать с помощью array.filter(...) в соответсвтии с фильтром из стора ( то есть по одному полю product.liked )
     const products = useSelector(state => state.products.products) as ProductType[] | undefined;
 
     const handleDeleteWithConfirmation = (product: ProductType) => {
@@ -43,6 +45,7 @@ function ProductsMain () {
     return (
         <main className='main container'>
             <h1 className='main_title'>Products</h1>
+            <Filter />
             <ul className='main_card-list'>
                 {products?.map((p: ProductType) => {
                     return <Product
