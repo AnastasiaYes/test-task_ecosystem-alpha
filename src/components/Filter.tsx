@@ -1,11 +1,21 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFilter, faSearch} from "@fortawesome/free-solid-svg-icons";
-
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {useDispatch} from "react-redux";
+import {store, updateFilter} from "../store/store.ts";
 
 function Filter () {
-    const [search, setSearch] = useState('');
-    const [category, setCategory] = useState('');
+    const [search, setSearch] = useState<string>('');
+    const [category, setCategory] = useState<string>('');
+
+    useEffect(() => {
+        store.dispatch(
+            updateFilter(
+                category === '' ? null : true,
+                search === '' ? null : search
+            )
+        );
+    },[search, category]);
 
     return(
         <nav className='filter-container'>
@@ -15,7 +25,7 @@ function Filter () {
                     type='text'
                     id='search'
                     placeholder='Search by name'
-                    onChange={() => {}}
+                    onChange={(e) => setSearch(e.target.value)}
                     value={search}
                 />
             </div>
@@ -24,7 +34,7 @@ function Filter () {
                 <select
                     id='category'
                     className='category-select'
-                    onChange={() => {}}
+                    onChange={(e) => setCategory(e.target.value)}
                     value={category}
                 >
                     <option value=''>All products</option>

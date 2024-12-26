@@ -12,6 +12,7 @@ export type ProductType = {
 export type ProductsStateType = { products: ProductType[], filter: {liked: boolean|null, search: string|null} };
 export type CreateProductType = { product: ProductType };
 export type EditLikeType = { id: number, liked: boolean };
+export type UpdateFilterType = { liked: boolean|null, search: string|null };
 export type RemoveProductType = { id: number };
 const initialState: ProductsStateType = {
     products: [
@@ -23,12 +24,12 @@ const initialState: ProductsStateType = {
             liked: false,
         }
     ],
-    filter: {liked: null},
+    filter: {liked: null, search: null}
 };
 
 const reducer = (state: ProductsStateType = initialState, action: {
     type: string
-} & (CreateProductType | RemoveProductType | EditLikeType)) => {
+} & (CreateProductType | RemoveProductType | EditLikeType | UpdateFilterType)) => {
     switch (action.type) {
         case 'ADD_PRODUCT': {
             const {product} = action as { type: string } & CreateProductType;
@@ -60,12 +61,12 @@ const reducer = (state: ProductsStateType = initialState, action: {
             }
         }
         case 'UPDATE_FILTER': {
-            //todo {liked: boolean|null, search: string|null}
+            const {liked, search} = action as {type: string} & UpdateFilterType
             return {
                 ...state,
-                /*filter: {
-                    ...action.filter
-                }*/
+                filter: {
+                   liked, search
+                }
             };
         }
         default:
@@ -87,6 +88,12 @@ export const editLike = (id: number, liked: boolean) => ({
     type: 'EDIT_LIKE',
     id,
     liked
+});
+
+export const updateFilter = (liked: boolean|null, search: string|null): {type: string} & UpdateFilterType => ({
+    type: 'UPDATE_FILTER',
+    liked,
+    search
 });
 
 const reducers = combineReducers({

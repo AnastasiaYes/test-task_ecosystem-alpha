@@ -9,11 +9,15 @@ function ProductInformation () {
     return(
         <main className='main container'>
             {product && <div className='product' key={product.id}>
-                <h1 className='main_title'>{product.title}</h1>
-                <img className='product_img'
-                     src={product.link}
-                     alt={product.title}/>
-                <p className='product_description'>{product.description}</p>
+                <div className='product_img-wrapper'>
+                    <img className='product_img'
+                         src={product.link}
+                         alt={product.title}/>
+                </div>
+                <div className='product_text-wrapper'>
+                    <h1 className='main_title product_main_title'>{product.title}</h1>
+                    <p className='product_description'>{product.description}</p>
+                </div>
             </div>}
             {!product && <div>Product not found</div>}
         </main>
