@@ -8,20 +8,19 @@ import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
 
 function App() {
+    console.log(import.meta.env.BASE_URL)
     return (
         <Provider store={store}>
-            <Router>
+            <BrowserRouter basename={import.meta.env.BASE_URL}>
                 <Header/>
-                <BrowserRouter basename={import.meta.env.BASE_URL}>
                     <Routes>
                         <Route path='/' element={<ProductsMain/>}/>
                         <Route path='/products' element={<ProductsMain/>}/>
                         <Route path='/create-product' element={<CreateProduct/>}/>
                         <Route path='/products/:id' element={<ProductInformation/>}/>
                     </Routes>
-                </BrowserRouter>
                 <Footer/>
-            </Router>
+            </BrowserRouter>
         </Provider>
     );
 }
