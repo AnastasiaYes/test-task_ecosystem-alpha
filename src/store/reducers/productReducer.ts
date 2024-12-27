@@ -56,8 +56,8 @@ function getStore() {
         products: [
             {
                 id: 1,
-                title: "Test 1",
-                description: "Test description",
+                title: "Котик",
+                description: "Описание котика",
                 link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
                 liked: false,
             }
