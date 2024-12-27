@@ -8,7 +8,6 @@ import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
 
 function App() {
-    console.log(import.meta.env.BASE_URL)
     return (
         <Provider store={store}>
             <BrowserRouter basename={import.meta.env.BASE_URL}>
