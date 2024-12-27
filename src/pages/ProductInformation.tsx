@@ -1,4 +1,4 @@
-import {ProductType, ProductsStateType} from "../store/store.ts";
+import {ProductType, ProductsStateType} from "../store/types/productTypes.ts";
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
@@ -8,6 +8,7 @@ function ProductInformation () {
 
     return(
         <main className='main container'>
+            <button className="back-button" onClick={() => window.history.back()}>Back</button>
             {product && <div className='product' key={product.id}>
                 <div className='product_img-wrapper'>
                     <img className='product_img'

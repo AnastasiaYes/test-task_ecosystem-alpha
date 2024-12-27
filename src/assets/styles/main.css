@@ -23,6 +23,10 @@ h1 {
     padding: 20px;
 }
 
+.main {
+    position: relative;
+}
+
 /*header*/
 
 .header {
@@ -252,6 +256,25 @@ h1 {
 
 .product_description {
     color: #666;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #dc4c3e; /* Цвет кнопки */
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10; /* Чтобы кнопка была поверх контента */
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #a63e34; /* Цвет при наведении */
 }
 
 /*form*/

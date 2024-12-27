@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {addProduct, ProductType} from "../store/store.ts";
-import {useDispatch} from "react-redux";
+import {addProduct} from "../store/actions/productActions.ts";
+import {ProductType} from "../store/types/productTypes.ts";
 import {toast, ToastContainer} from "react-toastify";
+import {store} from "../store/store.ts";
 
 function CreateProduct() {
-    const dispatch = useDispatch();
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -19,7 +19,7 @@ function CreateProduct() {
             link,
             liked: false
         }
-        dispatch(addProduct(newProduct));
+        store.dispatch(addProduct(newProduct));
 
         toast.success('Product created successfully!');
 

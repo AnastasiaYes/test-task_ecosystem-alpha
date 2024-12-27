@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faTrash} from "@fortawesome/free-solid-svg-icons";
-import {ProductType} from "../store/store.ts";
+import {ProductType} from "../store/types/productTypes.ts";
 import {MouseEventHandler} from "react";
 import {NavLink} from "react-router-dom";
 

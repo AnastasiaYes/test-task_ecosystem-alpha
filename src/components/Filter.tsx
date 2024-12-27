@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {useDispatch} from "react-redux";
-import {store, updateFilter} from "../store/store.ts";
+import {store} from "../store/store.ts";
+import {updateFilter} from '../store/actions/productActions.ts'
 
 function Filter () {
     const [search, setSearch] = useState<string>('');
