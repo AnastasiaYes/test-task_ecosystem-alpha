@@ -1,27 +1,27 @@
-import {EditLikeType, ProductsStateType, RemoveProductType, UpdateFilterType} from '../types/productTypes';
+import {EditLikeType, ProductsStateType, ProductType, RemoveProductType, UpdateFilterType} from '../types/productTypes';
 
 const initialState: ProductsStateType = getStore();
 
 const productReducer = (state: ProductsStateType = initialState, action: {
     type: string
-} & (UpdateFilterType & RemoveProductType & EditLikeType)) => {
+} & (UpdateFilterType | RemoveProductType | EditLikeType | {product: ProductType})) => {
     switch (action.type) {
         case 'ADD_PRODUCT': {
-            const {product} = action;
+            const {product} = action as {type: string} & {product: ProductType };
             const newState = {...state, products: [...state.products, product]};
             saveStore(newState);
 
             return newState;
         }
         case 'REMOVE_PRODUCT': {
-            const {id} = action;
+            const {id} = action as {type: string} & RemoveProductType;
             const newState = {...state, products: state.products.filter(p => p.id !== id)};
             saveStore(newState);
 
             return newState;
         }
         case 'EDIT_LIKE': {
-            const {liked, id} = action;
+            const {liked, id} = action as {type: string} & EditLikeType;
             const index = state.products.findIndex((p) => p.id === id);
             if (index === -1) return state;
             const newState = {
@@ -33,7 +33,7 @@ const productReducer = (state: ProductsStateType = initialState, action: {
             return newState;
         }
         case 'UPDATE_FILTER': {
-            const {liked, search} = action;
+            const {liked, search} = action as {type: string} & UpdateFilterType;
             const newState = {
                 ...state,
                 filter: {liked, search}

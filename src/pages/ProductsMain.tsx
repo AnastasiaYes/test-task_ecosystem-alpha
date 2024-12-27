@@ -6,19 +6,17 @@ import {
 } from "../store/types/productTypes.ts";
 import {
     editLike,
-    removeProduct,
-    setProducts,
-    updateFilter
+    removeProduct
 } from "../store/actions/productActions.ts";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {toast, ToastContainer} from "react-toastify";
 import Filter from "../components/Filter.tsx";
 import {useEffect} from "react";
 
 
 function ProductsMain () {
-    let products = useSelector(state => state.products.products) as ProductType[] | undefined;
-    const filter = (useSelector(state => state.products) as ProductsStateType).filter;
+    let products = useSelector((state: {products: ProductsStateType}) => state.products.products) as ProductType[] | undefined;
+    const filter = (useSelector((state: {products: ProductsStateType}) => state.products) as ProductsStateType).filter;
 
     useEffect(() => {
         if (filter) {
@@ -32,7 +30,7 @@ function ProductsMain () {
     }
 
     if (filter.search !== null && filter.search.length > 0 && Array.isArray(products)) {
-        products = products.filter((p: ProductType) => p.title.toLowerCase().includes(filter.search?.toLowerCase()))
+        products = products.filter((p: ProductType) => p.title.toLowerCase().includes(filter.search?.toLowerCase() || ''))
     }
 
     const handleDeleteWithConfirmation = (product: ProductType) => {

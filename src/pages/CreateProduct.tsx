@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {FormEventHandler, useState} from "react";
 import {addProduct} from "../store/actions/productActions.ts";
 import {ProductType} from "../store/types/productTypes.ts";
 import {toast, ToastContainer} from "react-toastify";
@@ -10,7 +10,7 @@ function CreateProduct() {
     const [description, setDescription] = useState('');
     const [link, setLink] = useState('');
 
-    const handleSubmit = e => {
+    const handleSubmit: FormEventHandler = e => {
         e.preventDefault();
         const newProduct:ProductType = {
             id: Date.now(),
