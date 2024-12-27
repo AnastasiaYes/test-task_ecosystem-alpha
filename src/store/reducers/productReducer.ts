@@ -2,7 +2,8 @@ import {EditLikeType, ProductsStateType, ProductType, RemoveProductType, UpdateF
 
 const initialState: ProductsStateType = getStore();
 
-const productReducer = (state: ProductsStateType = initialState, action: {
+const
+    productReducer = (state: ProductsStateType = initialState, action: {
     type: string
 } & (UpdateFilterType | RemoveProductType | EditLikeType | {product: ProductType})) => {
     switch (action.type) {
