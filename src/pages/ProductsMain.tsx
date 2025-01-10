@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import {toast, ToastContainer} from "react-toastify";
 import Filter from "../components/Filter.tsx";
 import {useEffect} from "react";
+import Pagination from "../components/Pagination.tsx";
 
 
 function ProductsMain () {
@@ -80,6 +81,7 @@ function ProductsMain () {
                     />;
                 })}
             </ul>
+            <Pagination />
             <ToastContainer/>
         </main>
     )
