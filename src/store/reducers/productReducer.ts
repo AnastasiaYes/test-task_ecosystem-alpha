@@ -34,10 +34,10 @@ const
             return newState;
         }
         case 'UPDATE_FILTER': {
-            const {liked, search} = action as {type: string} & UpdateFilterType;
+            const {liked, search, currentPage, itemsPerPage} = action as {type: string} & UpdateFilterType;
             const newState = {
                 ...state,
-                filter: {liked, search}
+                filter: {...state.filter, liked, search, currentPage, itemsPerPage}
             };
             saveStore(newState);
 
@@ -63,7 +63,7 @@ function getStore() {
                 liked: false,
             }
         ],
-        filter: {liked: null, search: null}
+        filter: {liked: null, search: null, currentPage: 1, itemsPerPage: 5}
     };
 
     const store: string | null = localStorage.getItem('store');

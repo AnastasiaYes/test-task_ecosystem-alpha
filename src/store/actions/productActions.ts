@@ -16,8 +16,10 @@ export const editLike = (id: number, liked: boolean) => ({
     liked
 });
 
-export const updateFilter = (liked: boolean|null, search: string|null) => ({
+export const updateFilter = (liked: boolean|null, search: string|null, currentPage: number, itemsPerPage: number) => ({
     type: 'UPDATE_FILTER',
     liked,
-    search
+    search,
+    currentPage,
+    itemsPerPage
 });
