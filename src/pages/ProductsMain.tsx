@@ -11,7 +11,6 @@ import {
 import {useSelector} from "react-redux";
 import {toast, ToastContainer} from "react-toastify";
 import Filter from "../components/Filter.tsx";
-import {useEffect} from "react";
 import Pagination from "../components/Pagination.tsx";
 
 
@@ -30,6 +29,12 @@ function ProductsMain () {
     if (filter.search !== null && filter.search.length > 0 && Array.isArray(products)) {
         products = products.filter((p: ProductType) => p.title.toLowerCase().includes(filter.search?.toLowerCase() || ''))
     }
+
+    // const totalPages = Math.ceil(products?.length / filter.itemsPerPage);
+    const indexOfLastItem = filter.currentPage * filter.itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - filter.itemsPerPage;
+    const currentItems = products?.slice(indexOfFirstItem, indexOfLastItem);
+
 
     const handleDeleteWithConfirmation = (product: ProductType) => {
         const notify = () =>
@@ -69,7 +74,7 @@ function ProductsMain () {
             <h1 className='main_title'>Products</h1>
             <Filter/>
             <ul className='main_card-list'>
-                {products?.map((p: ProductType) => {
+                {currentItems?.map((p: ProductType) => {
                     return <Product
                         key={p.id}
                         product={p}
@@ -78,7 +83,17 @@ function ProductsMain () {
                     />;
                 })}
             </ul>
-            <Pagination />
+            {/*<ul className='main_card-list'>*/}
+            {/*    {currentItems?.map((p: ProductType)  => (*/}
+            {/*        return <Product*/}
+            {/*            key={p.id}*/}
+            {/*            product={p}*/}
+            {/*            updLiked={() => store.dispatch(editLike(p.id, !p.liked))}*/}
+            {/*            deleteCard={() => handleDeleteWithConfirmation(p)}*/}
+            {/*        />;*/}
+            {/*))}*/}
+            {/*</ul>*/}
+            <Pagination/>
             <ToastContainer/>
         </main>
     )
