@@ -196,7 +196,13 @@ h1 {
     padding: 10px 0;
 }
 
-.filter-section {
+.filter-options {
+    display: flex;
+    gap: 5px;
+}
+
+.filter-section,
+.filter-number {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -210,7 +216,8 @@ h1 {
     font-size: 16px;
 }
 
-.category-select {
+.category-select,
+.category-number{
     padding: 10px;
     width: 100%;
     border-radius: 4px;
@@ -221,7 +228,8 @@ h1 {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.filter-section.category {
+.filter-section.category,
+.filter-number.category{
     position: relative;
     width: 100%;
 }

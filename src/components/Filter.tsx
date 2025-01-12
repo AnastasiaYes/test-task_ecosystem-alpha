@@ -16,7 +16,7 @@ function Filter () {
             updateFilter(
                 category === '' ? null : true,
                 search === '' ? null : search,
-                filter.currentPage,
+                1,
                 filter.itemsPerPage,
             )
         );
@@ -34,17 +34,35 @@ function Filter () {
                     value={search}
                 />
             </div>
-            <div className='filter-section'>
-                <label className='visually-hidden' htmlFor='category'>Category:</label>
-                <select
-                    id='category'
-                    className='category-select'
-                    onChange={(e) => setCategory(e.target.value)}
-                    value={category}
-                >
-                    <option value=''>All products</option>
-                    <option value='liked'>Liked</option>
-                </select>
+
+            <div className='filter-options'>
+                <div className='filter-number'>
+                    <label className='visually-hidden' htmlFor='category'>Number products:</label>
+                    <select
+                        id='category-number'
+                        className='category-number'
+                        onChange={(e) => setCategory(e.target.value)}
+                        value={category}
+                    >
+                        <option value=''>4</option>
+                        <option value='eight'>8</option>
+                        <option value='twelve'>12</option>
+                        <option value='sixteen'>16</option>
+                    </select>
+                </div>
+
+                <div className='filter-section'>
+                    <label className='visually-hidden' htmlFor='category'>Category:</label>
+                    <select
+                        id='category-select'
+                        className='category-select'
+                        onChange={(e) => setCategory(e.target.value)}
+                        value={category}
+                    >
+                        <option value=''>All products</option>
+                        <option value='liked'>Liked</option>
+                    </select>
+                </div>
             </div>
         </nav>
     )
