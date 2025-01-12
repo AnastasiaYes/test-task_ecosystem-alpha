@@ -361,20 +361,18 @@ h1 {
 }
 
 .pagination_link {
-    color: black;
-    float: left;
     padding: 8px 16px;
     text-decoration: none;
 }
 
-.pagination .pagination_link.active {
-    background-color: #4CAF50;
+.pagination .pagination_link.pagination_link-active {
+    background-color: #dc4c3e;
     color: white;
     border-radius: 5px;
 }
 
-.pagination .pagination_link:hover:not(.active) {
-    background-color: #ddd;
+.pagination .pagination_link:hover:not(.pagination_link-active) {
+    background-color: #dedcdc;
     border-radius: 5px;
 }
 

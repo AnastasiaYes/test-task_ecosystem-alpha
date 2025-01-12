@@ -15,16 +15,13 @@ import {useEffect} from "react";
 import Pagination from "../components/Pagination.tsx";
 
 
+// отображение продуктов, соответствующих пагинации, опираясь на itemsPerPage + currentPage
+// при измении фильтра, изменять и пагинацию(т.к. количество может имзениться)
+// отобразить количество элементво на странице, общее количество элементов
+// дать возможность менять кол-во элементов на странице
 function ProductsMain () {
     let products = useSelector((state: {products: ProductsStateType}) => state.products.products) as ProductType[] | undefined;
     const filter = (useSelector((state: {products: ProductsStateType}) => state.products) as ProductsStateType).filter;
-
-    useEffect(() => {
-        if (filter) {
-            localStorage.setItem('filter', JSON.stringify(filter));
-        }
-    }, [filter]);
-
 
     if (filter.liked !== null && Array.isArray(products)) {
         products = products.filter((p: ProductType) => p.liked === filter.liked);

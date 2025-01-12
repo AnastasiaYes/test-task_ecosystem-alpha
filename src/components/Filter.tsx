@@ -3,16 +3,21 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {store} from "../store/store.ts";
 import {updateFilter} from '../store/actions/productActions.ts'
+import {useSelector} from "react-redux";
+import {ProductsStateType} from "../store/types/productTypes.ts";
 
 function Filter () {
     const [search, setSearch] = useState<string>('');
     const [category, setCategory] = useState<string>('');
+    const { filter } = useSelector((state: {products: ProductsStateType }) => state.products);
 
     useEffect(() => {
         store.dispatch(
             updateFilter(
                 category === '' ? null : true,
-                search === '' ? null : search
+                search === '' ? null : search,
+                filter.currentPage,
+                filter.itemsPerPage,
             )
         );
     },[search, category]);

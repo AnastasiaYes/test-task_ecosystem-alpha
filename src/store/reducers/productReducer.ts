@@ -57,13 +57,41 @@ function getStore() {
         products: [
             {
                 id: 1,
-                title: "Котик",
+                title: "Котик 1",
                 description: "Описание котика",
                 link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
                 liked: false,
-            }
+            },
+            {
+                id: 2,
+                title: "Котик 2",
+                description: "Описание котика",
+                link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
+                liked: false,
+            },
+            {
+                id: 3,
+                title: "Котик 3",
+                description: "Описание котика",
+                link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
+                liked: false,
+            },
+            {
+                id: 4,
+                title: "Котик 4",
+                description: "Описание котика",
+                link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
+                liked: false,
+            },
+            {
+                id: 5,
+                title: "Котик 5",
+                description: "Описание котика",
+                link: "https://img.freepik.com/premium-photo/cat-yawns-full-mouth_89378-382.jpg",
+                liked: false,
+            },
         ],
-        filter: {liked: null, search: null, currentPage: 1, itemsPerPage: 5}
+        filter: {liked: null, search: null, currentPage: 1, itemsPerPage: 2}
     };
 
     const store: string | null = localStorage.getItem('store');
