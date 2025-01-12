@@ -3,10 +3,10 @@ import {ProductsStateType} from "../store/types/productTypes.ts";
 import {updateFilter} from "../store/actions/productActions.ts";
 import {store} from "../store/store.ts";
 
-function Pagination() {
-    const { products, filter } = useSelector((state: {products: ProductsStateType }) => state.products);
+function Pagination(props: {productsTotal: number}) {
+    const { filter } = useSelector((state: {products: ProductsStateType }) => state.products);
 
-    const totalPages = Math.ceil(products.length / filter.itemsPerPage);
+    const totalPages = Math.ceil(props.productsTotal / filter.itemsPerPage);
     const pages = []
     for (let i = 1; i <= totalPages; i++) {
         pages.push(i)

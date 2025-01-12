@@ -13,10 +13,6 @@ import {toast, ToastContainer} from "react-toastify";
 import Filter from "../components/Filter.tsx";
 import Pagination from "../components/Pagination.tsx";
 
-
-// отображение продуктов, соответствующих пагинации, опираясь на itemsPerPage + currentPage
-// при измении фильтра, изменять и пагинацию(т.к. количество может имзениться)
-// отобразить количество элементво на странице, общее количество элементов
 // дать возможность менять кол-во элементов на странице
 function ProductsMain () {
     let products = useSelector((state: {products: ProductsStateType}) => state.products.products) as ProductType[] | undefined;
@@ -30,8 +26,7 @@ function ProductsMain () {
         products = products.filter((p: ProductType) => p.title.toLowerCase().includes(filter.search?.toLowerCase() || ''))
     }
 
-    // const totalPages = Math.ceil(products?.length / filter.itemsPerPage);
-    const indexOfLastItem = filter.currentPage * filter.itemsPerPage;
+    const indexOfLastItem = Math.min(filter.currentPage * filter.itemsPerPage, products?.length ?? 0);
     const indexOfFirstItem = indexOfLastItem - filter.itemsPerPage;
     const currentItems = products?.slice(indexOfFirstItem, indexOfLastItem);
 
@@ -83,17 +78,15 @@ function ProductsMain () {
                     />;
                 })}
             </ul>
-            {/*<ul className='main_card-list'>*/}
-            {/*    {currentItems?.map((p: ProductType)  => (*/}
-            {/*        return <Product*/}
-            {/*            key={p.id}*/}
-            {/*            product={p}*/}
-            {/*            updLiked={() => store.dispatch(editLike(p.id, !p.liked))}*/}
-            {/*            deleteCard={() => handleDeleteWithConfirmation(p)}*/}
-            {/*        />;*/}
-            {/*))}*/}
-            {/*</ul>*/}
-            <Pagination/>
+
+            {products && products.length > 0 ? (
+                <>
+                    <p>{indexOfLastItem} из {products?.length}</p>
+                    <Pagination productsTotal={products?.length ?? 0}/>
+                </>
+            ) : (
+                <p>No products available</p>
+            )}
             <ToastContainer/>
         </main>
     )
