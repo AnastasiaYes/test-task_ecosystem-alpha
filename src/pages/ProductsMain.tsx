@@ -30,7 +30,6 @@ function ProductsMain () {
     const indexOfFirstItem = indexOfLastItem - filter.itemsPerPage;
     const currentItems = products?.slice(indexOfFirstItem, indexOfLastItem);
 
-
     const handleDeleteWithConfirmation = (product: ProductType) => {
         const notify = () =>
             toast.warning(

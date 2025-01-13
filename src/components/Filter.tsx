@@ -10,6 +10,7 @@ function Filter () {
     const [search, setSearch] = useState<string>('');
     const [category, setCategory] = useState<string>('');
     const { filter } = useSelector((state: {products: ProductsStateType }) => state.products);
+    const [itemsPerPage, setItemsPerPage] = useState<number>(filter.itemsPerPage);
 
     useEffect(() => {
         store.dispatch(
@@ -17,10 +18,10 @@ function Filter () {
                 category === '' ? null : true,
                 search === '' ? null : search,
                 1,
-                filter.itemsPerPage,
+                itemsPerPage,
             )
         );
-    },[search, category]);
+    },[search, category, itemsPerPage]);
 
     return(
         <nav className='filter-container'>
@@ -41,13 +42,14 @@ function Filter () {
                     <select
                         id='category-number'
                         className='category-number'
-                        onChange={(e) => setCategory(e.target.value)}
-                        value={category}
+                        value={itemsPerPage}
+                        onChange={(e) => setItemsPerPage(Number(e.target.value))}
                     >
-                        <option value=''>4</option>
-                        <option value='eight'>8</option>
-                        <option value='twelve'>12</option>
-                        <option value='sixteen'>16</option>
+                        <option value='2'>2</option>
+                        <option value='4'>4</option>
+                        <option value='8'>8</option>
+                        <option value='12'>12</option>
+                        <option value='16'>16</option>
                     </select>
                 </div>
 
